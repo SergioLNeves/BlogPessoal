@@ -13,7 +13,11 @@ export class PostagemService {
 
      //Get All
         async findAll(): Promise<Postagem[]>{
-            return await this.PostagemRepository.find()
+            return await this.PostagemRepository.find({
+                relations:{
+                    tema: true
+                },
+            })
         }
 
      //Get por ID
@@ -21,6 +25,8 @@ export class PostagemService {
             let postagem = await this.PostagemRepository.findOne({
                 where: {
                     id
+                }, relations:{
+                    tema:true
                 }
             }) 
 
