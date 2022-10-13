@@ -13,14 +13,21 @@ export class PostagemController{
         return this.PostagemService.findAll();
     }
 
-    //Utiliza o ID para encontrar a linha expecífica
+    //Utiliza o ID para encontrar a linha
     @Get('/:id')
     @HttpCode(HttpStatus.OK)
     findById(@Param('id',ParseIntPipe) id:number): Promise<Postagem>{
         return this.PostagemService.findById(id)
     }
 
-    //Utiliza o titulo para encontrar a linha expecífica
+    //Utiliza o Texto pra encontrar a linha
+    @Get('/Texto/:texto')
+    @HttpCode(HttpStatus.OK)
+    findByTexto(@Param('texto') texto:string): Promise<Postagem[]>{
+        return this.PostagemService.findByTexto(texto)
+    }
+
+    //Utiliza o titulo para encontrar a linha
     @Get('/Titulo/:titulo')
     @HttpCode(HttpStatus.OK)
     findByTitulo(@Param('titulo')titulo:string): Promise<Postagem>{

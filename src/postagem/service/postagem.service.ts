@@ -31,6 +31,15 @@ export class PostagemService {
 
         }
 
+    //Get por Texto
+        async findByTexto(texto: string): Promise<Postagem[]>{
+            return await this.PostagemRepository.find({
+                where: {
+                    texto: ILike(`%${texto}%`)
+                }
+            })
+        }
+        
      //Get por Titulo
         async findByTitulo(titulo: string): Promise<Postagem>{
             return await this.PostagemRepository.findOne({
@@ -64,5 +73,4 @@ export class PostagemService {
 
                 return await this.PostagemRepository.delete(id)
         }
-
-}
+    }
